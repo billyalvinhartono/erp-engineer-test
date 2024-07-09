@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="queue_import_data" model="ir.sequence">
+        <field name="name">Queue Import Data</field>
+        <field name="code">queue.import.data</field>
+        <field name="padding">9</field>
+        <field name="prefix">QUEUE/</field>
+        <field name="suffix"></field>
+        <field name="use_date_range" eval="True" />
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>

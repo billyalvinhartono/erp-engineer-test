@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- menu Aplikasi Root -->
+    <menuitem
+        name="Alterra Bills"
+        id="alterra_bills_menu_root"
+        sequence="2"
+        web_icon="alterra_bills,static/description/main_menu.png"
+        groups="base.group_user"/>
+
+        
+        <menuitem
+            name="Import Employee"
+            id="import_employee_main_menu"
+            sequence="10"
+            parent="alterra_bills_menu_root"
+            groups="base.group_user"/>
+
+            <menuitem
+                id="queue_import_data_menu"
+                name="Queue on Import Data"
+                action="queue_import_data_action"
+                parent="alterra_bills.import_employee_main_menu"
+                sequence="10" />
+
+            <menuitem
+                id="hr_import_employee_menu"
+                name="Import Employee"
+                action="action_hr_import_employee_wizard"
+                parent="alterra_bills.import_employee_main_menu"
+                sequence="20"
+            />
+</odoo>
