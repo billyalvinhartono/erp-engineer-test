@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_ir_api_log_tree" model="ir.ui.view">
+		<field name="name">ir.api.log.tree.view</field>
+		<field name="model">ir.api.log</field>
+		<field name="arch" type="xml">
+			<tree string="Api Log" create="0" edit="0" delete="1">
+				<field name="name"/>
+				<field name="create_date"/>
+				<field name="create_uid"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="view_ir_api_log_form" model="ir.ui.view">
+		<field name="name">ir.api.log.form.view</field>
+		<field name="model">ir.api.log</field>
+		<field name="arch" type="xml">
+			<form string="API Log">
+				<sheet>
+					<group name="creation_details" string="Creation details">
+							<field name="create_date"/>
+							<field name="create_uid"/>
+					</group>
+					<group name="log_details" string="Logging details">
+							<field name="name"/>
+							<field name="status"/>
+							<field name="status_desc"/>
+							<field name="message"/>
+							<field name="func"/>
+							<field name="response"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="ir_api_log_view" model="ir.actions.act_window">
+		<field name="name">API Log</field>
+		<field name="res_model">ir.api.log</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="view_ir_api_log_tree"/>
+	</record>
+</odoo>

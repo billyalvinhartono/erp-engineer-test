@@ -12,12 +12,20 @@
         'base',
         'mail',
         'hr',
+        'account',
         'queue_job',
+        'web_responsive',
         ],
     'assets': {
         
     },
     'data' : [
+        "api/data/res_user_setting.xml",
+        "api/security/ir.model.access.csv",
+        "api/views/ir_api_log_view.xml",
+        "api/views/res_users_view.xml",
+        "api/views/app_root.xml",
+        
         "employee/data/ir_seq.xml",
         "employee/data/ir_mail_server.xml",
         "employee/data/import_mail_template.xml",

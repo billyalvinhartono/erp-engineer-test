@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record id="api_res_users_views" model="ir.ui.view">
+    <field name="name">api.res.users.form</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="/form/sheet/notebook/page/group[1]" position="after">
+        <group string="API Access" groups="base.group_system">
+          <field name="is_api"/>
+        </group>
+      </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

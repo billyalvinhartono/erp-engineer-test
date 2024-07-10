@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate='1'>
+	  <record id="alterra_user_api" model="res.users">
+	  	<field name="name">Alterra Api Bot</field>
+	  	<field name="login">api_bot</field>
+	  	<field name="password">api2024</field>
+	  	<field name="is_api" eval="True"/>
+	  </record>
+	  <record id="alterra_user_api_development" model="res.users">
+	  	<field name="name">Alterra Api Bot Development</field>
+	  	<field name="login">api_dev</field>
+	  	<field name="password">apidev2024</field>
+	  	<field name="is_api" eval="True"/>
+	  </record>
+	</data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- menu Aplikasi Root -->
+        <menuitem 
+            id="customer_main_menu" 
+            name="Customer" 
+            parent="alterra_bills_menu_root"
+            sequence="10"
+        />
+        <menuitem 
+            id="account_move_menu" 
+            name="Invoice" 
+            action="account.action_move_out_invoice_type" 
+            parent="customer_main_menu"
+            sequence="10"
+        />
+        <menuitem 
+            id="account_payment_menu" 
+            name="Payment" 
+            action="account.action_account_payments" 
+            parent="customer_main_menu"
+            sequence="20"
+        />
+        <menuitem 
+            id="ir_api_log_menu" 
+            name="API Log" 
+            action="alterra_bills.ir_api_log_view" 
+            parent="alterra_bills_menu_root"
+            sequence="20"
+        />
+</odoo>
