@@ -12,17 +12,18 @@
         'base',
         'mail',
         'hr',
+        'queue_job',
         ],
     'assets': {
         
     },
     'data' : [
-        "employee/data/ir_cron.xml",
         "employee/data/ir_seq.xml",
+        "employee/data/ir_mail_server.xml",
+        "employee/data/import_mail_template.xml",
         "employee/security/ir.model.access.csv",
-        "employee/views/app_root.xml",
-        "employee/views/queue_import_data_views.xml",
         "employee/wizard/hr_import_employee_wizard.xml",
+        "employee/views/app_root.xml",
     ],
     'installable': True,
     'application': True,

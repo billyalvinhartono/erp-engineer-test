@@ -6,8 +6,11 @@
         <field name="model">hr.import.employee.wizard</field>
         <field name="arch" type="xml">
             <form string="Import Employee">
+                <b>Dont forget to setup your active email in Contact for email notification.</b>
                 <group>
                     <field name="import_file" />
+                    <field name="is_wait" string="I Want to Wait" />
+                    <field name="partner_id" />
                 </group>
                 <footer>
                     <button name="assign_import" type="object" string="Import" class="oe_highlight" />
