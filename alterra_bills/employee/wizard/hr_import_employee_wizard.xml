@@ -10,7 +10,7 @@
                 <group>
                     <field name="import_file" />
                     <field name="is_wait" string="I Want to Wait" />
-                    <field name="partner_id" />
+                    <field name="partner_id" invisible="1"/>
                 </group>
                 <footer>
                     <button name="assign_import" type="object" string="Import" class="oe_highlight" />

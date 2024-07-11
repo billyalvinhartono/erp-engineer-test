@@ -12,7 +12,8 @@ class HrImportEmployeeWizard(models.Model):
 	_description = " Import Employee Wizard"
 
 	import_file = fields.Binary(
-		string="Import Employee"
+		string="Import Employee",
+		required=True,
 	)
 	is_wait = fields.Boolean()
 
@@ -27,6 +28,7 @@ class HrImportEmployeeWizard(models.Model):
 
 	def assign_import(self):
 		try:
+			# check the file format and validity to convert
 			fp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
 			fp.write(binascii.a2b_base64(self.import_file))
 			fp.seek(0)
@@ -37,6 +39,10 @@ class HrImportEmployeeWizard(models.Model):
 		except xlrd.biffh.XLRDError:
 			raise UserError('Only excel files are supported.')
 
+		# there is 2 mode that can be use to upload. 
+		# 1. just run it and wait until its done
+		# 2. it will run in background.
+		# both will be sending email to current user_id.partner_id.email, it will not send if email is not set
 		if self.is_wait:
 			self.run_import()
 		else:
@@ -73,9 +79,13 @@ class HrImportEmployeeWizard(models.Model):
 			if len(vals_list) != 0:
 				employee_ids = self.env['hr.employee'].create(vals_list)
 				self.status = 'Success'
-				template_email = self.env.ref("alterra_bills.import_status_template")
-				template_email.send_mail(self.id, force_send=True)
+				if self.partner_id.id:
+					if self.partner_id.email:
+						template_email = self.env.ref("alterra_bills.import_status_template")
+						template_email.send_mail(self.id, force_send=True)
 		except Exception as e:
 			self.status = 'Failed'
-			template_email = self.env.ref("alterra_bills.import_status_template")
-			template_email.send_mail(self.id, force_send=True)
+			if self.partner_id.id:
+				if self.partner_id.email:
+					template_email = self.env.ref("alterra_bills.import_status_template")
+					template_email.send_mail(self.id, force_send=True)

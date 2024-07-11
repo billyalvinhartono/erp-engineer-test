@@ -13,6 +13,7 @@
         'mail',
         'hr',
         'account',
+        'contacts',
         'queue_job',
         'web_responsive',
         ],
@@ -21,17 +22,21 @@
     },
     'data' : [
         "api/data/res_user_setting.xml",
-        "api/security/ir.model.access.csv",
-        "api/views/ir_api_log_view.xml",
-        "api/views/res_users_view.xml",
-        "api/views/app_root.xml",
         
         "employee/data/ir_seq.xml",
         "employee/data/ir_mail_server.xml",
         "employee/data/import_mail_template.xml",
+        
+        "api/security/ir.model.access.csv",
+        "api/views/ir_api_log_view.xml",
+        "api/views/res_users_view.xml",
+        
         "employee/security/ir.model.access.csv",
         "employee/wizard/hr_import_employee_wizard.xml",
+        
         "employee/views/app_root.xml",
+        "api/views/app_root.xml",
+        
     ],
     'installable': True,
     'application': True,

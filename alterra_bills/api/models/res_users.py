@@ -9,4 +9,5 @@ _logger = logging.getLogger(__name__)
 class ResUser(models.Model):
 	_inherit = 'res.users'
 
+	#user with is_api true can access the endpoint
 	is_api = fields.Boolean(string="API user", default=False)

@@ -16,6 +16,7 @@ from werkzeug.urls import url_encode
 
 import pytz
 
+# model for handling every request to odoo
 ################################################################################
 class IrApiLog(models.Model):
 	_name = "ir.api.log"

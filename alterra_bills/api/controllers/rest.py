@@ -11,6 +11,7 @@ br = {'status': "400",'info': "Bad Request",'message': "Failed to get response"}
 ua = {'status': "401",'info': "Unauthorized",'message': "You dont have access!"}
 
 class Rest(http.Controller):
+	#function to create ir.api.log
 	def logs(self,data,noreturn=False):
 		logs = request.env['ir.api.log'].sudo().create({
 			'name' 			: data['name'],
@@ -22,6 +23,7 @@ class Rest(http.Controller):
 			})
 		return logs
 
+	#function to handling response
 	def response(self,data,api,json=False,noreturn=False):
 		response = {
 			'status': 200, 
@@ -41,6 +43,7 @@ class Rest(http.Controller):
 		if not noreturn:
 			return response
 
+	#function to handling exception error
 	def exception(self,access,error,api,json=False):
 		if access:
 			logs = {
