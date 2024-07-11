@@ -59,7 +59,7 @@ b. To log in to the database, use the **Auth/Auth** endpoint with the following 
      - or
      - `login`: `api_bot`, `password`: `api2024`
 
-   Click **Send** (right top blue button) to authenticate.
+   Click **Send** (right top blue button) to authenticate. (Dont forget to choose your environment on right top corner.)
 
 c. Use **Auth/Destroy** for logout.
 
