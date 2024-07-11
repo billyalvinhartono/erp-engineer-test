@@ -1,0 +1,943 @@
+{
+	"info": {
+		"_postman_id": "75576c9a-bd0f-4252-96f5-e5105c19b74a",
+		"name": "Alterra Bills",
+		"description": "**Alterra Bills** is a Postman Collection that help 3rd Party to create and update invoice and also register payment dynamically.\n\n## QuickStart\n\nBefore you run the API, you need to :\n\n1. Create an environment with \"url\" as variable. For the value you can fill an url that has any Alterra Bills API.\n2. Send the **Auth** request to get the session_id that stored in cookies.\n3. Session_id from all Request except **auth** and **destroy** will be detected automatically by Odoo API if no **X-Openerp-Session-Id** value on the headers of the request.\n4. To finish the session, you can use **Destroy** request to erase the cookies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12545033",
+		"_collection_link": "https://erp-indonesia.postman.co/workspace/ca79620b-3a19-4eb6-ae6d-5ba7145ba8ed/collection/12545033-75576c9a-bd0f-4252-96f5-e5105c19b74a?action=share&source=collection_link&creator=12545033"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"db\": \"alterra\",\n        \"login\": \"api_dev\",\n        \"password\": \"apidev2024\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/web/session/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"web",
+								"session",
+								"authenticate"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"db\": \"alterra\",\n        \"login\": \"api_dev\",\n        \"password\": \"apidev2024\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/web/session/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"web",
+										"session",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1119"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=ffbfef38c1b16c5078d07cf40b40cf6ac7f55f12; Expires=Wed, 09-Oct-2024 12:17:06 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 12:17:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"uid\": 9,\n        \"is_system\": false,\n        \"is_admin\": false,\n        \"user_context\": {\n            \"lang\": \"en_US\",\n            \"tz\": false,\n            \"uid\": 9\n        },\n        \"db\": \"alterra\",\n        \"server_version\": \"14.0\",\n        \"server_version_info\": [\n            14,\n            0,\n            0,\n            \"final\",\n            0,\n            \"\"\n        ],\n        \"name\": \"Alterra Api Bot Development\",\n        \"username\": \"api_dev\",\n        \"partner_display_name\": \"Alterra Api Bot Development\",\n        \"company_id\": 1,\n        \"partner_id\": 44,\n        \"web.base.url\": \"http://localhost:8014\",\n        \"active_ids_limit\": 20000,\n        \"max_file_upload_size\": 134217728,\n        \"user_companies\": {\n            \"current_company\": [\n                1,\n                \"YourCompany\"\n            ],\n            \"allowed_companies\": [\n                [\n                    1,\n                    \"YourCompany\"\n                ]\n            ]\n        },\n        \"currencies\": {\n            \"1\": {\n                \"symbol\": \"€\",\n                \"position\": \"after\",\n                \"digits\": [\n                    69,\n                    2\n                ]\n            },\n            \"2\": {\n                \"symbol\": \"$\",\n                \"position\": \"before\",\n                \"digits\": [\n                    69,\n                    2\n                ]\n            }\n        },\n        \"show_effect\": \"True\",\n        \"display_switch_company_menu\": false,\n        \"cache_hashes\": {\n            \"load_menus\": \"803213a8195ae94c1be37519557e9f03c2700c59c15db9b2d09f4018747d8666\",\n            \"qweb\": \"e581dab85c3139280195eb9aeb740b29377695325eed0b8fd50d3fde8da6a58e\",\n            \"translations\": \"5227498d9df4b403b0244c75aac21e0c091e50ce\"\n        },\n        \"user_id\": [\n            9\n        ],\n        \"notification_type\": \"email\",\n        \"odoobot_initialized\": false\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\" : \"2.0\",\n    \"params\" :{\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/web/session/destroy",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"web",
+								"session",
+								"destroy"
+							]
+						},
+						"description": "It's use to erase the session_id to end the session. This reuest needed to be the last request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\" : \"2.0\",\n    \"params\" :{\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/web/session/destroy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"web",
+										"session",
+										"destroy"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=2d9ceec7edcae6df35abaee9caf7baece2d84cfe; Expires=Mon, 13-Sep-2021 08:26:45 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.5"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Jun 2021 08:26:45 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Invoice",
+			"item": [
+				{
+					"name": "Invoice List",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"invoice_number\": \"0009\", //optional\n        \"open\": true //optional\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/invoice/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"invoice",
+								"list"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Invoice List",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"invoice_number\": \"0002\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/invoice/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"invoice",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "775"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=e63603c08ede5be364e827e0dfb81c01ddd71c7d; Expires=Tue, 08-Oct-2024 18:55:05 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jul 2024 18:55:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": [\n            {\n                \"name\": \"INV/2024/07/0002\",\n                \"partner_id\": 10,\n                \"partner_name\": \"Deco Addict\",\n                \"partner_street\": \"77 Santa Barbara Rd\",\n                \"move_line\": [\n                    {\n                        \"product_id\": 33,\n                        \"product_name\": \"Four Person Desk\",\n                        \"label\": \"[FURN_8220] Four Person Desk\\nFour person modern office workstation\",\n                        \"qty\": 5,\n                        \"price_unit\": 23500,\n                        \"taxes\": [\n                            {\n                                \"tax_id\": 1,\n                                \"tax_name\": \"Tax 15.00%\",\n                                \"percent\": 15\n                            }\n                        ],\n                        \"price_subtotal\": 117500\n                    },\n                    {\n                        \"product_id\": 35,\n                        \"product_name\": \"Three-Seat Sofa\",\n                        \"label\": \"[FURN_8999] Three-Seat Sofa\\nThree Seater Sofa with Lounger in Steel Grey Colour\",\n                        \"qty\": 20,\n                        \"price_unit\": 1500,\n                        \"taxes\": [\n                            {\n                                \"tax_id\": 1,\n                                \"tax_name\": \"Tax 15.00%\",\n                                \"percent\": 15\n                            }\n                        ],\n                        \"price_subtotal\": 30000\n                    }\n                ]\n            }\n        ],\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Invoice Create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"partner_id\": 10,\n        \"invoice_date\": \"2024-07-11 14:00:00\",\n        \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 33,\n                        \"product_name\": \"Four Person Desk\",\n                        \"label\": \"[FURN_8220] Four Person Desk\\nFour person modern office workstation\",\n                        \"quantity\": 7.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 35,\n                        \"product_name\": \"Three-Seat Sofa\",\n                        \"label\": \"[FURN_8999] Three-Seat Sofa\\nThree Seater Sofa with Lounger in Steel Grey Colour\",\n                        \"tax_ids\":[1],\n                        \"quantity\": 30.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/invoice/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"invoice",
+								"create"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Invoice Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"partner_id\": 26,\n        \"invoice_date\": \"2024-07-10 14:00:00\",\n        \"move_line\":[\n                    {\n                        \"product_id\": 33,\n                        \"product_name\": \"Four Person Desk\",\n                        \"label\": \"[FURN_8220] Four Person Desk\\nFour person modern office workstation\",\n                        \"qty\": 5.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 35,\n                        \"product_name\": \"Three-Seat Sofa\",\n                        \"label\": \"[FURN_8999] Three-Seat Sofa\\nThree Seater Sofa with Lounger in Steel Grey Colour\",\n                        \"qty\": 20.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/invoice/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"invoice",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=e63603c08ede5be364e827e0dfb81c01ddd71c7d; Expires=Tue, 08-Oct-2024 19:27:04 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jul 2024 19:27:04 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": {\n            \"name\": \"INV/2024/07/0009\"\n        },\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Invoice Create Bulk",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"data\":[\n            {\n                \"partner_id\": 15,\n                \"invoice_date\": \"2024-07-10 14:00:00\",\n                \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 13,\n                        \"label\": \"[FURN_8220] Four Person Desk\\nFour person modern office workstation\",\n                        \"quantity\": 12.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 23,\n                        \"label\": \"[FURN_8999] Three-Seat Sofa\\nThree Seater Sofa with Lounger in Steel Grey Colour\",\n                        \"quantity\": 20.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n            },\n            {\n                \"partner_id\": 17,\n                \"invoice_date\": \"2024-07-11 17:00:00\",\n                \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 21,\n                        \"label\": \"Stuff\",\n                        \"quantity\": 5.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 17,\n                        \"label\": \"Another Stuff\",\n                        \"quantity\": 20.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/invoice/create-bulk",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"invoice",
+								"create-bulk"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Invoice Create Bulk",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"data\":[\n            {\n                \"partner_id\": 15,\n                \"invoice_date\": \"2024-07-10 14:00:00\",\n                \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 13,\n                        \"label\": \"[FURN_8220] Four Person Desk\\nFour person modern office workstation\",\n                        \"quantity\": 12.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 23,\n                        \"label\": \"[FURN_8999] Three-Seat Sofa\\nThree Seater Sofa with Lounger in Steel Grey Colour\",\n                        \"quantity\": 20.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n            },\n            {\n                \"partner_id\": 17,\n                \"invoice_date\": \"2024-07-11 17:00:00\",\n                \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 21,\n                        \"label\": \"Stuff\",\n                        \"quantity\": 5.0,\n                        \"price_unit\": 23500.0\n                    },\n                    {\n                        \"product_id\": 17,\n                        \"label\": \"Another Stuff\",\n                        \"quantity\": 20.0,\n                        \"price_unit\": 1500.0\n                    }\n                ]\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/invoice/create-bulk",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"invoice",
+										"create-bulk"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=e63603c08ede5be364e827e0dfb81c01ddd71c7d; Expires=Wed, 09-Oct-2024 08:33:35 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 08:33:35 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": [\n            {\n                \"name\": \"INV/2024/07/0022\"\n            },\n            {\n                \"name\": \"INV/2024/07/0023\"\n            }\n        ],\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Invoice Update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"id\": 39,\n        \"ref\":\"56\",\n        \"partner_id\": 16,\n        \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 32,\n                        \"label\": \"Stuff\",\n                        \"quantity\": 5.0,\n                        \"price_unit\": 10000000.0\n                    }\n                ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/invoice/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"invoice",
+								"update"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Invoice Update",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"id\": 39,\n        \"ref\":\"56\",\n        \"partner_id\": 16,\n        \"invoice_line_ids\":[\n                    {\n                        \"product_id\": 32,\n                        \"label\": \"Stuff\",\n                        \"quantity\": 5.0,\n                        \"price_unit\": 10000000.0\n                    }\n                ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/invoice/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"invoice",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=e63603c08ede5be364e827e0dfb81c01ddd71c7d; Expires=Wed, 09-Oct-2024 08:58:44 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 08:58:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": {\n            \"name\": \"INV/2024/07/0017\"\n        },\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Payment List",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"payment_number\": \"0001\" // Optional\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/payment/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payment",
+								"list"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Payment List",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"payment_number\": \"0001\" // Optional\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/payment/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"payment",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=5ba7da75cb1f543c08ac0a9d7a6f57baa341ab40; Expires=Wed, 09-Oct-2024 11:35:24 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 11:35:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": [],\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Payment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"id\": 11,\n        \"payment_date\": \"2024-07-11 14:00:00\", //optional\n        \"amount\": 365125 //optional\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/payment/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payment",
+								"register"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Register Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"id\": 11,\n        \"payment_date\": \"2024-07-11 14:00:00\", //optional\n        \"amount\": 365125 //optional\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/payment/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"payment",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=da748b1d94bc9acb4f6d743d2ce2f43c5ac6d5d7; Expires=Wed, 09-Oct-2024 12:08:28 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 12:08:28 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": {\n            \"payment_number\": \"BNK1/2024/07/0001\"\n        },\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Payment Bulk",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"data\": [\n            {\n                \"id\": 10,\n                \"amount\": 10000, //optional, default fully paid\n                \"payment_date\": \"2024-07-10 14:00:00\" //optional\n            },\n            {\n                \"id\": 9,\n                \"amount\": 10000, //optional, default fully paid\n                \"payment_date\": \"2024-07-10 14:00:00\" //optional\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/payment/register-bulk",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payment",
+								"register-bulk"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Register Payment Bulk",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"data\": [\n            {\n                \"id\": 10,\n                \"amount\": 10000, //optional, default fully paid\n                \"payment_date\": \"2024-07-10 14:00:00\" //optional\n            },\n            {\n                \"id\": 9,\n                \"amount\": 10000, //optional, default fully paid\n                \"payment_date\": \"2024-07-10 14:00:00\" //optional\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/payment/register-bulk",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"payment",
+										"register-bulk"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=da748b1d94bc9acb4f6d743d2ce2f43c5ac6d5d7; Expires=Wed, 09-Oct-2024 12:14:47 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 12:14:47 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": [\n            {\n                \"payment_number\": \"BNK1/2024/07/0002\"\n            },\n            {\n                \"payment_number\": \"BNK1/2024/07/0003\"\n            }\n        ],\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Payment Merge",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"invoice_ids\": [10,9],\n        \"amount\": 270000,\n        \"payment_date\": \"2024-07-11 14:00:00\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/payment/register-group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payment",
+								"register-group"
+							]
+						},
+						"description": "It's use to get session_id to access all of the API. This request needed to be the first request before the other request.\n\n#### Requirements :\n**No changing** needed to this request body and headers."
+					},
+					"response": [
+						{
+							"name": "Register Payment Merge",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"invoice_ids\": [10,9],\n        \"amount\": 270000,\n        \"payment_date\": \"2024-07-11 14:00:00\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8014/payment/register-group",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8014",
+									"path": [
+										"payment",
+										"register-group"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=da748b1d94bc9acb4f6d743d2ce2f43c5ac6d5d7; Expires=Wed, 09-Oct-2024 12:15:13 GMT; Max-Age=7776000; HttpOnly; Path=/"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/0.16.1 Python/3.8.16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jul 2024 12:15:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": null,\n    \"result\": {\n        \"status\": 200,\n        \"response\": [\n            {\n                \"payment_number\": \"BNK1/2024/07/0004\"\n            }\n        ],\n        \"message\": \"Success\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
