@@ -46,11 +46,9 @@ class Invoice(http.Controller):
 		model_id = request.env['ir.model'].sudo().search([('model','=','account.move')])
 		fields = model_id.field_id.mapped('name')
 		for key, value in kwargs.items():
-			print(key)
 			if key not in fields:
 				return 'No field named : '+key
 			if key not in INVOICE_OPEN_UPDATE:
-				print(INVOICE_OPEN_UPDATE)
 				return 'Your are not allowed to update '+key
 		
 		if kwargs.get('invoice_line_ids'):
@@ -263,6 +261,8 @@ class Invoice(http.Controller):
 			move_id = request.env['account.move'].sudo().search([('id','=',id)])
 			if not move_id.id:
 				raise Exception('Invoice id not found!')
+			if len(move_id._get_reconciled_info_JSON_values()) > 0:
+				raise Exception('Can not update invoice because its already paid or partially paid!')
 			
 			#update invoice
 			move_id.button_draft()
